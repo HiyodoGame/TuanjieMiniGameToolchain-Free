@@ -80,7 +80,7 @@ Run a full scan to analyze your project and view the diagnostic report.
 
 ## Version
 
-Current free release: **0.1.2**
+Current free release: **0.1.4**
 
 The `upm` branch always contains the latest published packages. The default `main` branch only holds repository documentation.
 
