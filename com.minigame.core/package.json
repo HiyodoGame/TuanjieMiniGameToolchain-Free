@@ -1,0 +1,21 @@
+{
+  "name": "com.minigame.core",
+  "displayName": "MiniGame Toolchain Core",
+  "version": "0.1.0",
+  "unity": "2022.3",
+  "description": "Shared core library for the MiniGame Toolchain product matrix (Build Optimizer, Performance Suite, Starter Kit, Builder Pro).",
+  "keywords": [
+    "minigame",
+    "wechat",
+    "tuanjie",
+    "build",
+    "performance"
+  ],
+  "category": "Tools",
+  "author": {
+    "name": "Hiyodo Studio",
+    "email": "dev@hiyodo.studio"
+  },
+  "license": "See LICENSE.md",
+  "dependencies": {}
+}

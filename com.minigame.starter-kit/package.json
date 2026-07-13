@@ -1,0 +1,21 @@
+{
+  "name": "com.minigame.starter-kit",
+  "version": "0.1.0",
+  "displayName": "MiniGame Starter Kit",
+  "description": "微信小游戏项目启动套件：预配置模板、核心系统框架与微信 SDK 封装。",
+  "unity": "2022.3",
+  "author": {
+    "name": "MiniGame Toolchain",
+    "email": "support@minigame.dev"
+  },
+  "license": "See LICENSE.md",
+  "dependencies": {
+    "com.minigame.core": "0.1.0"
+  },
+  "keywords": [
+    "minigame",
+    "wechat",
+    "starter-kit",
+    "template"
+  ]
+}
