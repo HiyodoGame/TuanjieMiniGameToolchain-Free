@@ -1,0 +1,23 @@
+{
+  "name": "com.minigame.performance-suite",
+  "displayName": "MiniGame Performance Suite",
+  "version": "0.1.2",
+  "unity": "2022.3",
+  "description": "Lightweight real-device performance monitoring and analysis suite for WeChat MiniGame development.",
+  "keywords": [
+    "minigame",
+    "wechat",
+    "performance",
+    "profiler",
+    "tuanjie"
+  ],
+  "category": "Tools",
+  "author": {
+    "name": "Hiyodo Studio",
+    "email": "dev@hiyodo.studio"
+  },
+  "license": "See LICENSE.md",
+  "dependencies": {
+    "com.minigame.core": "0.1.2"
+  }
+}
