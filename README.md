@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img alt="License: MIT" src="https://img.shields.io/badge/License-Free%20Edition-blue.svg">
+  <img alt="License: Free Edition" src="https://img.shields.io/badge/License-Free%20Edition-blue.svg">
   <img alt="Engine: Tuanjie 2022.3" src="https://img.shields.io/badge/Engine-Tuanjie%202022.3-blueviolet.svg">
   <img alt="Platform: WeChat MiniGame" src="https://img.shields.io/badge/Platform-WeChat%20MiniGame-green.svg">
 </p>
