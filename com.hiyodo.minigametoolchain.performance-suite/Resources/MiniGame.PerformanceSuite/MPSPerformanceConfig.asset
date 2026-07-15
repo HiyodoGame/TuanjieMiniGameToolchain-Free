@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75da3d2b8a44de09e3795b38fa9d45e, type: 3}
+  m_Name: MPSPerformanceConfig
+  m_EditorClassIdentifier: 
+  AutoInitialize: 1
+  VisibleOnStart: 0
+  ToggleKey: 293
+  Scale: 1.521
+  DefaultAnchor: {x: 0.61, y: 0.98}
+  SamplesPerSecond: 10
+  MaxHistorySeconds: 300
+  CaptureJsHeap: 1
+  FpsWarningThreshold: 30
+  UnityHeapWarningThresholdMB: 800
+  JsHeapWarningThresholdMB: 400
+  GcAllocWarningThresholdKB: 50
+  AutoFallbackToIMGUI: 1
+  Draggable: 1
+  ExportFilePrefix: mps_performance
+  ProfileStartup: 1
+  LogStartupReport: 1
+  DefaultStartupStageThreshold: 1
+  StartupStageThresholds:
+  - StageName: FirstFrame
+    ThresholdSeconds: 0.5
+  - StageName: FirstSceneLoad
+    ThresholdSeconds: 2
+  - StageName: AssetWarmUp
+    ThresholdSeconds: 3
+  - StageName: WeChatApiInit
+    ThresholdSeconds: 1
+  - StageName: ShaderWarmUp
+    ThresholdSeconds: 2
+  AutoMemorySnapshot: 1
+  UnityHeapSnapshotThresholdMB: 500
+  JsHeapSnapshotThresholdMB: 200
+  MemorySnapshotCooldownSeconds: 10
+  MaxMemorySnapshots: 20
+  ShowHistoryGraph: 1
+  GraphMaxPoints: 60
+  ShowStartupSummary: 1
