@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using MiniGame.BuildOptimizer.Editor.Utils;
 using MiniGame.Core.Editor.Analyzers;
 using MiniGame.Core.Editor.DependencyGraph;
 using UnityEditor;
@@ -72,7 +73,7 @@ namespace MiniGame.BuildOptimizer.Editor.Analyzers
                 var path = AssetDatabase.GUIDToAssetPath(guid);
                 if (string.IsNullOrEmpty(path)) continue;
 
-                // 跳过非项目资产、目录、脚本、编辑器工具、元数据和场景
+                // 跳过非项目资产、目录、脚本、编辑器工具、SDK/插件、元数据和场景
                 if (string.IsNullOrEmpty(path) ||
                     path.StartsWith("Packages/") ||
                     Directory.Exists(path) ||
@@ -80,7 +81,8 @@ namespace MiniGame.BuildOptimizer.Editor.Analyzers
                     path.Contains("/Editor/") ||
                     path.EndsWith(".asmdef") ||
                     path.EndsWith(".cs") ||
-                    path.EndsWith(".unity"))
+                    path.EndsWith(".unity") ||
+                    BuildOptimizerPathFilter.IsIgnored(path))
                 {
                     continue;
                 }

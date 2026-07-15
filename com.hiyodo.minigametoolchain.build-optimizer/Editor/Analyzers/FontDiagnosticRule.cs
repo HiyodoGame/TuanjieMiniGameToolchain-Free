@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using MiniGame.BuildOptimizer.Editor.Utils;
 using MiniGame.Core.Editor.Analyzers;
 using UnityEditor;
 using UnityEngine;
@@ -33,6 +34,8 @@ namespace MiniGame.BuildOptimizer.Editor.Analyzers
             foreach (var guid in fontGuids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
+                if (BuildOptimizerPathFilter.IsIgnored(path)) continue;
+
                 var fileInfo = new FileInfo(path);
                 if (!fileInfo.Exists) continue;
 
@@ -58,6 +61,8 @@ namespace MiniGame.BuildOptimizer.Editor.Analyzers
             foreach (var guid in tmpFontGuids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
+                if (BuildOptimizerPathFilter.IsIgnored(path)) continue;
+
                 var fileInfo = new FileInfo(path);
                 if (!fileInfo.Exists) continue;
 

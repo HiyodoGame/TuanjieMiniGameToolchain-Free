@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using MiniGame.BuildOptimizer.Editor.Utils;
 using MiniGame.Core.Editor.Analyzers;
 using UnityEditor;
 using UnityEngine;
@@ -33,6 +34,8 @@ namespace MiniGame.BuildOptimizer.Editor.Analyzers
             foreach (var guid in guids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
+                if (BuildOptimizerPathFilter.IsIgnored(path)) continue;
+
                 var importer = AssetImporter.GetAtPath(path) as TextureImporter;
                 var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
                 if (importer == null || texture == null) continue;
@@ -143,6 +146,7 @@ namespace MiniGame.BuildOptimizer.Editor.Analyzers
             var duplicates = FindDuplicateTextures(guids);
             foreach (var group in duplicates)
             {
+                if (group.Any(g => BuildOptimizerPathFilter.IsIgnored(AssetDatabase.GUIDToAssetPath(g)))) continue;
                 var paths = string.Join("\n", group.Select(g => AssetDatabase.GUIDToAssetPath(g)));
                 var totalFileSize = group.Sum(g => EstimateFileSize(g));
                 var keepOneSize = EstimateFileSize(group.First());

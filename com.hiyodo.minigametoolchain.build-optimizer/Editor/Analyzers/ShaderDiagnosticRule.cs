@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using MiniGame.BuildOptimizer.Editor.Utils;
 using MiniGame.Core.Editor.Analyzers;
 using UnityEditor;
 using UnityEngine;
@@ -47,6 +48,8 @@ namespace MiniGame.BuildOptimizer.Editor.Analyzers
             foreach (var guid in shaderGuids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
+                if (BuildOptimizerPathFilter.IsIgnored(path)) continue;
+
                 var shader = AssetDatabase.LoadAssetAtPath<UnityEngine.Shader>(path);
                 if (shader == null) continue;
 
