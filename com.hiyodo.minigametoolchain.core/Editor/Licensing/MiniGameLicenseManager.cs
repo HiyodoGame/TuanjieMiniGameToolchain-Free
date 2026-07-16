@@ -21,6 +21,9 @@ namespace MiniGame.Core.Editor.Licensing
                 { MiniGameLicenseFeature.BuildOptimizerFullDiagnostics, MiniGameLicenseTier.Personal },
                 { MiniGameLicenseFeature.BuildOptimizerBundleStrategy, MiniGameLicenseTier.Personal },
                 { MiniGameLicenseFeature.BuildOptimizerSettingsSnapshots, MiniGameLicenseTier.Personal },
+                { MiniGameLicenseFeature.BuildOptimizerSmartBundle, MiniGameLicenseTier.Professional },
+                { MiniGameLicenseFeature.BuildOptimizerFontSubset, MiniGameLicenseTier.Professional },
+                { MiniGameLicenseFeature.BuildOptimizerShaderVariant, MiniGameLicenseTier.Professional },
 
                 // Performance Suite
                 { MiniGameLicenseFeature.PerformanceSuiteMemoryHistory, MiniGameLicenseTier.Personal },

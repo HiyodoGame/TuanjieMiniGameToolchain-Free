@@ -11,6 +11,9 @@ namespace MiniGame.Core.Editor.Licensing
         public const string BuildOptimizerFullDiagnostics = "BuildOptimizer.FullDiagnostics";
         public const string BuildOptimizerBundleStrategy = "BuildOptimizer.BundleStrategy";
         public const string BuildOptimizerSettingsSnapshots = "BuildOptimizer.SettingsSnapshots";
+        public const string BuildOptimizerSmartBundle = "BuildOptimizer.SmartBundle";
+        public const string BuildOptimizerFontSubset = "BuildOptimizer.FontSubset";
+        public const string BuildOptimizerShaderVariant = "BuildOptimizer.ShaderVariant";
 
         // Performance Suite
         public const string PerformanceSuiteMemoryHistory = "PerformanceSuite.MemoryHistory";

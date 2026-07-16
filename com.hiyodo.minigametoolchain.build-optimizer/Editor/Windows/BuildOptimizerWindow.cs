@@ -25,10 +25,11 @@ namespace MiniGame.BuildOptimizer.Editor.Windows
             Dashboard,
             Issues,
             History,
-            Optimize
+            Optimize,
+            Pro
         }
 
-        private static readonly string[] TabLabels = { "概览", "问题", "历史", "优化" };
+        private static readonly string[] TabLabels = { "概览", "问题", "历史", "优化", "Pro" };
         private static readonly string[] SeverityFilterLabels = { "全部", "Error", "Warning", "Info" };
         private static readonly string[] SortLabels = { "严重级别", "预估节省", "类别" };
 
@@ -47,6 +48,13 @@ namespace MiniGame.BuildOptimizer.Editor.Windows
         private List<string> _snapshotIds = new List<string>();
         private string _snapshotComment = "";
         private bool _rerunDiagnosticsAfterRestore;
+
+        // Pro tab state
+        private int _selectedProSubTab;
+        private static readonly string[] ProSubTabLabels = { "分包", "字体", "Shader" };
+        private string _bundleRemoteLoadPath = "https://your-cdn-domain.com/[BuildTarget]";
+        private BundleStrategy _lastBundleStrategy;
+        private string _bundleReportPath = "Logs/BuildOptimizer/BundleReports";
 
         // History tab state
         private int _selectedBaselineIndex;
@@ -174,6 +182,9 @@ namespace MiniGame.BuildOptimizer.Editor.Windows
                         break;
                     case ViewTab.Optimize:
                         DrawOptimize();
+                        break;
+                    case ViewTab.Pro:
+                        DrawPro();
                         break;
                 }
 
@@ -709,6 +720,153 @@ namespace MiniGame.BuildOptimizer.Editor.Windows
                 return dt.ToString("yyyy-MM-dd HH:mm");
             }
             return createdAt;
+        }
+
+        #endregion
+
+        #region Pro
+
+        private void DrawPro()
+        {
+            EditorGUILayout.LabelField("Build Optimizer Pro", EditorStyles.boldLabel);
+            EditorGUILayout.Space(8);
+
+            var smartBundleEnabled = MiniGameLicenseManager.IsFeatureEnabled(MiniGameLicenseFeature.BuildOptimizerSmartBundle);
+            var fontSubsetEnabled = MiniGameLicenseManager.IsFeatureEnabled(MiniGameLicenseFeature.BuildOptimizerFontSubset);
+            var shaderVariantEnabled = MiniGameLicenseManager.IsFeatureEnabled(MiniGameLicenseFeature.BuildOptimizerShaderVariant);
+            var anyProEnabled = smartBundleEnabled || fontSubsetEnabled || shaderVariantEnabled;
+
+            if (!anyProEnabled)
+            {
+                EditorGUILayout.HelpBox(MiniGameLicenseManager.GetUpgradeHint(MiniGameLicenseFeature.BuildOptimizerSmartBundle), MessageType.Warning);
+                return;
+            }
+
+            _selectedProSubTab = GUILayout.Toolbar(_selectedProSubTab, ProSubTabLabels);
+            EditorGUILayout.Space(8);
+
+            switch (_selectedProSubTab)
+            {
+                case 0:
+                    DrawBundleOptimizer();
+                    break;
+                case 1:
+                    DrawFontSubsetOptimizer();
+                    break;
+                case 2:
+                    DrawShaderVariantOptimizer();
+                    break;
+            }
+        }
+
+        private void DrawBundleOptimizer()
+        {
+            var enabled = MiniGameLicenseManager.IsFeatureEnabled(MiniGameLicenseFeature.BuildOptimizerSmartBundle);
+            if (!enabled)
+            {
+                EditorGUILayout.HelpBox(MiniGameLicenseManager.GetUpgradeHint(MiniGameLicenseFeature.BuildOptimizerSmartBundle), MessageType.Warning);
+                return;
+            }
+
+            EditorGUILayout.LabelField("智能分包策略", EditorStyles.boldLabel);
+            EditorGUILayout.HelpBox("基于场景依赖图自动划分 FirstPackage / RemoteCDN / Preload，首包预算 4MB。", MessageType.Info);
+            EditorGUILayout.Space(8);
+
+            _bundleRemoteLoadPath = EditorGUILayout.TextField("远程加载路径", _bundleRemoteLoadPath);
+            _bundleReportPath = EditorGUILayout.TextField("报告输出目录", _bundleReportPath);
+
+            EditorGUILayout.Space(8);
+            if (GUILayout.Button("分析并导出报告", GUILayout.Height(32)))
+            {
+                var report = BundleOptimizer.AnalyzeAndExport(_bundleReportPath, new Progress<string>(msg => Debug.Log(msg)));
+                _lastBundleStrategy = report.Strategy;
+                Debug.Log($"[BuildOptimizer] 分包报告已导出: {_bundleReportPath}");
+            }
+
+            if (_lastBundleStrategy != null)
+            {
+                EditorGUILayout.Space(12);
+                EditorGUILayout.LabelField("分析结果", EditorStyles.boldLabel);
+                EditorGUILayout.LabelField($"分组数: {_lastBundleStrategy.Groups.Count}", EditorStyles.miniLabel);
+                EditorGUILayout.LabelField($"首包估算: {FormatBytes(_lastBundleStrategy.EstimatedFirstPackageSizeBytes)}", EditorStyles.miniLabel);
+                EditorGUILayout.LabelField($"远程包估算: {FormatBytes(_lastBundleStrategy.EstimatedRemotePackageSizeBytes)}", EditorStyles.miniLabel);
+                EditorGUILayout.LabelField($"预下载估算: {FormatBytes(_lastBundleStrategy.EstimatedPreloadSizeBytes)}", EditorStyles.miniLabel);
+
+                if (_lastBundleStrategy.Warnings.Count > 0)
+                {
+                    EditorGUILayout.Space(4);
+                    foreach (var warning in _lastBundleStrategy.Warnings)
+                    {
+                        EditorGUILayout.HelpBox(warning, MessageType.Warning);
+                    }
+                }
+
+                EditorGUILayout.Space(8);
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    if (GUILayout.Button("应用经典 AssetBundle 名称", GUILayout.Height(28)))
+                    {
+                        if (EditorUtility.DisplayDialog("确认应用", "这将修改所有分包资源的 assetBundleName，是否继续？", "应用", "取消"))
+                        {
+                            BundleOptimizer.ApplyClassicAssetBundleNames(_lastBundleStrategy, new Progress<string>(msg => Debug.Log(msg)));
+                        }
+                    }
+
+                    using (new EditorGUI.DisabledScope(!AddressablesConfigGenerator.IsAddressablesAvailable))
+                    {
+                        if (GUILayout.Button("生成 Addressables 分组", GUILayout.Height(28)))
+                        {
+                            if (EditorUtility.DisplayDialog("确认应用", "这将创建/覆盖 Addressables 分组，是否继续？", "应用", "取消"))
+                            {
+                                try
+                                {
+                                    BundleOptimizer.ApplyAddressablesConfig(_lastBundleStrategy, _bundleRemoteLoadPath, new Progress<string>(msg => Debug.Log(msg)));
+                                }
+                                catch (Exception ex)
+                                {
+                                    EditorUtility.DisplayDialog("Addressables 配置失败", ex.Message, "确定");
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!AddressablesConfigGenerator.IsAddressablesAvailable)
+                {
+                    EditorGUILayout.HelpBox("未检测到 Addressables 包，无法生成分组配置。", MessageType.Info);
+                }
+            }
+        }
+
+        private void DrawFontSubsetOptimizer()
+        {
+            var enabled = MiniGameLicenseManager.IsFeatureEnabled(MiniGameLicenseFeature.BuildOptimizerFontSubset);
+            if (!enabled)
+            {
+                EditorGUILayout.HelpBox(MiniGameLicenseManager.GetUpgradeHint(MiniGameLicenseFeature.BuildOptimizerFontSubset), MessageType.Warning);
+                return;
+            }
+
+            EditorGUILayout.LabelField("字体子集裁剪", EditorStyles.boldLabel);
+            EditorGUILayout.HelpBox("扫描场景中实际使用的字符，为 oversized 字体生成 TMP Font Asset 子集。", MessageType.Info);
+
+            EditorGUILayout.Space(8);
+            EditorGUILayout.HelpBox("功能开发中，敬请期待。", MessageType.Info);
+        }
+
+        private void DrawShaderVariantOptimizer()
+        {
+            var enabled = MiniGameLicenseManager.IsFeatureEnabled(MiniGameLicenseFeature.BuildOptimizerShaderVariant);
+            if (!enabled)
+            {
+                EditorGUILayout.HelpBox(MiniGameLicenseManager.GetUpgradeHint(MiniGameLicenseFeature.BuildOptimizerShaderVariant), MessageType.Warning);
+                return;
+            }
+
+            EditorGUILayout.LabelField("Shader 变体管理", EditorStyles.boldLabel);
+            EditorGUILayout.HelpBox("分析 Shader 变体数量，生成精简的 ShaderVariantCollection 与异步 WarmUp 代码模板。", MessageType.Info);
+
+            EditorGUILayout.Space(8);
+            EditorGUILayout.HelpBox("功能开发中，敬请期待。", MessageType.Info);
         }
 
         #endregion
