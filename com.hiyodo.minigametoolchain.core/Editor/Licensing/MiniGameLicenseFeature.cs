@@ -37,6 +37,7 @@ namespace MiniGame.Core.Editor.Licensing
         public const string BuilderProAddressableConfig = "BuilderPro.AddressableConfig";
         public const string BuilderProShaderWarmUp = "BuilderPro.ShaderWarmUp";
         public const string BuilderProCICDTemplates = "BuilderPro.CICDTemplates";
+        public const string BuilderProWebhookNotifications = "BuilderPro.WebhookNotifications";
     }
 }
 #endif

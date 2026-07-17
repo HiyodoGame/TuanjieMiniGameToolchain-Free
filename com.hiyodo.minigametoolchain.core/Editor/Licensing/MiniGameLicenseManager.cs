@@ -46,7 +46,8 @@ namespace MiniGame.Core.Editor.Licensing
                 { MiniGameLicenseFeature.BuilderProCustomRules, MiniGameLicenseTier.Professional },
                 { MiniGameLicenseFeature.BuilderProAddressableConfig, MiniGameLicenseTier.Personal },
                 { MiniGameLicenseFeature.BuilderProShaderWarmUp, MiniGameLicenseTier.Personal },
-                { MiniGameLicenseFeature.BuilderProCICDTemplates, MiniGameLicenseTier.Team }
+                { MiniGameLicenseFeature.BuilderProCICDTemplates, MiniGameLicenseTier.Team },
+                { MiniGameLicenseFeature.BuilderProWebhookNotifications, MiniGameLicenseTier.Professional }
             };
 
         /// <summary>
