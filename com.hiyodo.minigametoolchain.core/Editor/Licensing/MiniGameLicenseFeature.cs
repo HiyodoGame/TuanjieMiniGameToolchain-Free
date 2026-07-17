@@ -21,6 +21,9 @@ namespace MiniGame.Core.Editor.Licensing
         public const string PerformanceSuiteSnapshotDiff = "PerformanceSuite.SnapshotDiff";
         public const string PerformanceSuiteAlerts = "PerformanceSuite.Alerts";
         public const string PerformanceSuiteStartupReport = "PerformanceSuite.StartupReport";
+        public const string PerformanceSuiteDeviceTier = "PerformanceSuite.DeviceTier";
+        public const string PerformanceSuiteOptimizationAdvisor = "PerformanceSuite.OptimizationAdvisor";
+        public const string PerformanceSuiteAutomatedTesting = "PerformanceSuite.AutomatedTesting";
 
         // Starter Kit
         public const string StarterKitProjectTemplate = "StarterKit.ProjectTemplate";

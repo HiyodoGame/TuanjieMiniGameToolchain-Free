@@ -24,7 +24,7 @@ The full commercial source code, including paid features such as `Builder Pro`, 
 ## Included Free Packages / 免费包清单
 
 - **Version / 版本**: 0.1.4
-- **Published / 发布日期**: 2026-07-16
+- **Published / 发布日期**: 2026-07-17
 
 - `com.hiyodo.minigametoolchain.build-optimizer`
 - `com.hiyodo.minigametoolchain.core`

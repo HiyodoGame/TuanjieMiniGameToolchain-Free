@@ -31,6 +31,9 @@ namespace MiniGame.Core.Editor.Licensing
                 { MiniGameLicenseFeature.PerformanceSuiteSnapshotDiff, MiniGameLicenseTier.Personal },
                 { MiniGameLicenseFeature.PerformanceSuiteAlerts, MiniGameLicenseTier.Professional },
                 { MiniGameLicenseFeature.PerformanceSuiteStartupReport, MiniGameLicenseTier.Personal },
+                { MiniGameLicenseFeature.PerformanceSuiteDeviceTier, MiniGameLicenseTier.Professional },
+                { MiniGameLicenseFeature.PerformanceSuiteOptimizationAdvisor, MiniGameLicenseTier.Professional },
+                { MiniGameLicenseFeature.PerformanceSuiteAutomatedTesting, MiniGameLicenseTier.Professional },
 
                 // Starter Kit
                 { MiniGameLicenseFeature.StarterKitProjectTemplate, MiniGameLicenseTier.Free },
