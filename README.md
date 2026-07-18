@@ -23,7 +23,7 @@ The full commercial source code, including paid features such as `Builder Pro`, 
 
 ## Included Free Packages / 免费包清单
 
-- **Version / 版本**: 0.1.4
+- **Version / 版本**: 0.2.0
 - **Published / 发布日期**: 2026-07-18
 
 - `com.hiyodo.minigametoolchain.build-optimizer`
@@ -62,9 +62,9 @@ https://gitee.com/HiyodoGame/TuanjieMiniGameToolchain-Free.git?path=Packages/com
 
 ### Via Local Disk / 本地安装
 
-Download `free-upm-bundle-0.1.4.zip` from Releases, extract it, and add each package folder via **Add package from disk...**.
+Download `free-upm-bundle-0.2.0.zip` from Releases, extract it, and add each package folder via **Add package from disk...**.
 
-从 Releases 下载 `free-upm-bundle-0.1.4.zip`，解压后通过 **Add package from disk...** 逐个添加。
+从 Releases 下载 `free-upm-bundle-0.2.0.zip`，解压后通过 **Add package from disk...** 逐个添加。
 
 ## License / 许可
 

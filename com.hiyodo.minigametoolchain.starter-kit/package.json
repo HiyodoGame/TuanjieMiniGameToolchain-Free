@@ -1,6 +1,6 @@
 {
   "name": "com.hiyodo.minigametoolchain.starter-kit",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "displayName": "MiniGame Starter Kit",
   "description": "微信小游戏项目启动套件：预配置模板、核心系统框架与微信 SDK 封装。",
   "unity": "2022.3",

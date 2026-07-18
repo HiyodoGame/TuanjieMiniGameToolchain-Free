@@ -1,7 +1,7 @@
 {
   "name": "com.hiyodo.minigametoolchain.core",
   "displayName": "MiniGame Toolchain Core",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "unity": "2022.3",
   "description": "Shared core library for the MiniGame Toolchain product matrix (Build Optimizer, Performance Suite, Starter Kit, Builder Pro).",
   "keywords": [

@@ -1,7 +1,7 @@
 {
   "name": "com.hiyodo.minigametoolchain.build-optimizer",
   "displayName": "MiniGame Build Optimizer",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "unity": "2022.3",
   "description": "WeChat MiniGame build optimizer: diagnostics, one-click optimization, asset bundling, font subsetting, and shader variant analysis.",
   "keywords": [
