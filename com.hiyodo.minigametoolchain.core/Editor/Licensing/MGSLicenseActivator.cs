@@ -73,7 +73,7 @@ namespace MiniGame.Core.Editor.Licensing
                 return false;
 
             var key = licenseKey.Trim().ToUpperInvariant();
-            return key.StartsWith("MGBT-") && key.Length == 24;
+            return key.StartsWith("MGBT-") && key.Length == 29;
         }
 
         /// <summary>
