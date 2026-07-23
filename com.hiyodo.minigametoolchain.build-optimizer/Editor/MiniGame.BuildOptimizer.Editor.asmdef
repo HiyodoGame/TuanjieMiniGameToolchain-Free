@@ -1,0 +1,21 @@
+{
+    "name": "MiniGame.BuildOptimizer.Editor",
+    "rootNamespace": "MiniGame.BuildOptimizer.Editor",
+    "references": [
+        "MiniGame.Core.Editor",
+        "MiniGame.Core.Runtime",
+        "Unity.TextMeshPro",
+        "Unity.TextMeshPro.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
