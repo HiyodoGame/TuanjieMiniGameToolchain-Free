@@ -1,0 +1,10 @@
+Third-Party Notices for com.hiyodo.minigametoolchain.core
+==========================================================
+
+This package does not currently include any third-party source code, libraries,
+fonts, audio, or other assets that require attribution or additional licensing.
+
+All code is original work by Hiyodo Studio unless otherwise noted.
+
+If future versions introduce third-party dependencies, this file will be updated
+with the component name, version, license, and attribution details.

@@ -1,0 +1,20 @@
+{
+    "name": "MiniGame.PerformanceSuite.Editor",
+    "rootNamespace": "MiniGame.PerformanceSuite.Editor",
+    "references": [
+        "MiniGame.Core.Editor",
+        "MiniGame.Core.Runtime",
+        "MiniGame.PerformanceSuite.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
