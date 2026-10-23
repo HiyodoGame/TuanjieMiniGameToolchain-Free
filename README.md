@@ -38,7 +38,7 @@ The full commercial source code, including paid features such as `Builder Pro`, 
 Open **Window → Package Manager**, click **+ → Add package from git URL...**, and enter:
 
 ```
-https://github.com/HiyodoGame/TuanjieMiniGameToolchain-Free.git?path=Packages/com.hiyodo.minigametoolchain.core#upm
+https://github.com/HiyodoGame/TuanjieMiniGameToolchain-Free.git?path=com.hiyodo.minigametoolchain.core#upm/v0.3.1
 ```
 
 Repeat for each package you need. Make sure to install `com.hiyodo.minigametoolchain.core` first, since the other packages depend on it.
@@ -48,16 +48,16 @@ Repeat for each package you need. Make sure to install `com.hiyodo.minigametoolc
 Available package paths / 可用包路径：
 
 ```
-Packages/com.hiyodo.minigametoolchain.core
-Packages/com.hiyodo.minigametoolchain.build-optimizer
-Packages/com.hiyodo.minigametoolchain.performance-suite
-Packages/com.hiyodo.minigametoolchain.starter-kit
+com.hiyodo.minigametoolchain.core
+com.hiyodo.minigametoolchain.build-optimizer
+com.hiyodo.minigametoolchain.performance-suite
+com.hiyodo.minigametoolchain.starter-kit
 ```
 
 ### Via Gitee (when synced / 同步完成后)
 
 ```
-https://gitee.com/HiyodoGame/TuanjieMiniGameToolchain-Free.git?path=Packages/com.hiyodo.minigametoolchain.core#upm
+https://gitee.com/HiyodoGame/TuanjieMiniGameToolchain-Free.git?path=com.hiyodo.minigametoolchain.core#upm/v0.3.1
 ```
 
 ### Via Local Disk / 本地安装
